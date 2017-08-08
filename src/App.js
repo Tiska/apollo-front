@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import NewsList from './components/NewsList/NewsList';
+import NewsListConnector from './components/NewsList/NewsListConnector';
 import logo from './logo.svg';
 import './App.css';
 
 import {
     ApolloClient,
-    gql,
-    graphql,
     ApolloProvider,
     createNetworkInterface
 } from 'react-apollo';
@@ -17,18 +15,6 @@ const client = new ApolloClient({
     networkInterface: networkInterface
 });
 
-const newsListQuery = gql`
-   query {
-     news {
-       id
-       title
-       url
-       votes
-     }
-   }
- `;
-const NewsListWithData = graphql(newsListQuery)(NewsList);
-
 class App extends Component {
   render() {
     return (
@@ -38,7 +24,7 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h2>Welcome to React</h2>
                 </div>
-                <NewsListWithData />
+                <NewsListConnector />
             </div>
         </ApolloProvider>
     );

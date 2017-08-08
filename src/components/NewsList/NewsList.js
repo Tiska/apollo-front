@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddNewsConnector from './../AddNews/AddNewsConnector';
 
 class NewsList extends Component {
     render() {
@@ -9,9 +10,14 @@ class NewsList extends Component {
             return <p>{this.props.data.error.message}</p>;
         }
         if (this.props.data.news) {
-            return <ul>
-                { this.props.data.news.map( news => <li key={news.id}>{news.title} {news.url} {news.votes}</li> ) }
-            </ul>;
+            return (
+                <div>
+                    <AddNewsConnector />
+                    <ul>
+                        { this.props.data.news.map( news => <li key={news.id}>{news.title} {news.url} {news.votes}</li> ) }
+                    </ul>
+                </div>
+            )
         }
     }
 }
