@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import AddNewsConnector from './../AddNews/AddNewsConnector';
 
 class NewsList extends Component {
+
+    componentWillMount() {
+        this.props.subscribeToNewNews();
+    }
+
     render() {
         if (this.props.data.loading) {
             return <p>Loading ...</p>;
