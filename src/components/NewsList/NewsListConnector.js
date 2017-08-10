@@ -26,6 +26,10 @@ const newsSubscription = gql`
   }
 `;
 
+function compareNombres(a, b) {
+    return b.votes - a.votes;
+}
+
 const NewsListConnector = graphql(newsListQuery, {
     props: props => {
         return {
@@ -37,13 +41,16 @@ const NewsListConnector = graphql(newsListQuery, {
                             return prev;
                         }
                         const newNews = subscriptionData.data.newsAdded;
+                        let news = [newNews, ...prev.news];
+                        news.sort(compareNombres);
                         return Object.assign({}, prev, {
-                            news: [newNews, ...prev.news]
+                            news: news
                         });
                     }
                 });
             },
-            data: props.data
+            data: props.data,
+            compareNombres: compareNombres
         };
     },
 })(NewsList);

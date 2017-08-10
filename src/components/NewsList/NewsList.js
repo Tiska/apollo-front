@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AddNewsConnector from './../AddNews/AddNewsConnector';
+import VotesButtonConnector from './../VotesButton/VotesButtonConnector';
+import styles from './NewsList.css';
 
 class NewsList extends Component {
 
@@ -19,8 +21,30 @@ class NewsList extends Component {
                 <div>
                     <AddNewsConnector />
                     <ul>
-                        { this.props.data.news.map( news => <li key={news.id}>{news.title} {news.url} {news.votes}</li> ) }
+
                     </ul>
+                    <table className="darkTable">
+                        <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Url</th>
+                            <th>Votes</th>
+                            <th>Up vote</th>
+                            <th>Down Vote</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        { this.props.data.news.concat().sort(this.props.compareNombres).map( news =>
+                            <tr key={news.id}>
+                                <td>{news.title}</td>
+                                <td>{news.url}</td>
+                                <td>{news.votes}</td>
+                                <td><VotesButtonConnector type="UP" newsId={news.id} /></td>
+                                <td><VotesButtonConnector type="DOWN" newsId={news.id} /></td>
+                            </tr>
+                        ) }
+                        </tbody>
+                    </table>
                 </div>
             )
         }
