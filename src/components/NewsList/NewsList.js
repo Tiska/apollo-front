@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AddNewsConnector from './../AddNews/AddNewsConnector';
 import VotesButtonConnector from './../VotesButton/VotesButtonConnector';
 import styles from './NewsList.css';
 
@@ -19,10 +18,6 @@ class NewsList extends Component {
         if (this.props.data.news) {
             return (
                 <div>
-                    <AddNewsConnector />
-                    <ul>
-
-                    </ul>
                     <table className="darkTable">
                         <thead>
                         <tr>

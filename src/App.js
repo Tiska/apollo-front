@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewsListConnector from './components/NewsList/NewsListConnector';
+import AddNewsConnector from './components/AddNews/AddNewsConnector';
 import logo from './logo.svg';
 import './App.css';
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
@@ -8,6 +9,11 @@ import {
     ApolloProvider,
     createNetworkInterface
 } from 'react-apollo';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
 
 const networkInterface = createNetworkInterface({
     uri: 'http://localhost:4000/graphql'
@@ -32,7 +38,19 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h2>Welcome to React</h2>
                 </div>
-                <NewsListConnector />
+                <Router>
+                    <div>
+                        <ul>
+                            <li><Link to="/">Add News</Link></li>
+                            <li><Link to="/news">News</Link></li>
+                        </ul>
+
+                        <hr/>
+
+                        <Route exact path="/" component={AddNewsConnector}/>
+                        <Route path="/news" component={NewsListConnector}/>
+                    </div>
+                </Router>
             </div>
         </ApolloProvider>
     );

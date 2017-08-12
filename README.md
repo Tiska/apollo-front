@@ -1,4 +1,8 @@
-## Apollo Front react JS
+## Apollo Front React JS
+
+- Install
+
+npm install
 
 - start 
 
